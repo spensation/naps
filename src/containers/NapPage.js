@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Nap from './components/Nap';
+import '../App.css';
+import Nap from '../components/Nap';
 
 class NapPage extends Component {
 

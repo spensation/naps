@@ -1,65 +1,81 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchNaps } from './actions/naps';
 import './App.css';
-import Nap from './components/Nap';
+import NapPage from './containers/NapPage';
+import NavBar from './components/NavBar';
+import Main from './components/Main';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      napText: '',
-      naps: [],
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     napText: '',
+  //     naps: [],
+  //   }
+  // }
 
-  updateNapText(napText) {
-    this.setState({ napText: napText.target.value })
-  }
+  // updateNapText(napText) {
+  //   this.setState({ napText: napText.target.value })
+  // }
 
-  addNap() {
-    if (this.state.napText === '') {return}
+  // addNap() {
+  //   if (this.state.napText === '') {return}
 
-      let napsArr = this.state.naps;
-      napsArr.push(this.state.napText);
-      this.setState({ napText: '' });
-      this.textInput.focus(); 
-  }
+  //     let napsArr = this.state.naps;
+  //     napsArr.push(this.state.napText);
+  //     this.setState({ napText: '' });
+  //     this.textInput.focus(); 
+  // }
 
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+  // handleKeyPress = (event) => {
+  //   if (event.key === "Enter") {
 
-    }
-  }
+  //   }
+  // }
 
-  deleteNote(index) {
-    let napsArr = this.state.naps;
-    napsArr.splice(index, 1)
-    this.setState({ naps: napsArr })
-  }
+  // deleteNote(index) {
+  //   let napsArr = this.state.naps;
+  //   napsArr.splice(index, 1)
+  //   this.setState({ naps: napsArr })
+  // }
 
   render() {
 
-    let naps = this.state.naps.map((val, key) => {
-      return <Nap key={key} text={val}
-            deleteMethod={ () => this.deleteNote(key) } />
-    })
+    // let naps = this.state.naps.map((val, key) => {
+    //   return <Nap key={key} text={val}
+    //         deleteMethod={ () => this.deleteNote(key) } />
+    // })
 
     return (
-      <div className="container">
-        <div className="header">Naps</div>
-        {naps}
-        <div className="btn" onClick={this.addNap.bind(this)}>+</div>
-
-        <input type="text"
-          ref={((input) => {this.textInput = input}) }
-          className="textInput"
-          value={this.state.napText}
-          onChange={napText => this.updateNapText(napText)}
-          onKeyPress={this.handleKeyPress.bind(this)}
-        />
-      </div>
+      <Router>
+        <div>
+          <h1 className="App-title">Naps</h1>
+          <NavBar />
+          <Route exact path="/" component={Main} />
+          <Route exact path="/naps" component={NapPage} />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { 
+    naps: state.naps,
+     };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchNaps: fetchNaps
+  }, dispatch);
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
