@@ -19,12 +19,13 @@ body {
 }
 /* The header */
 .header {
-  font-size: 22px;
+  font-size: 36px;
   font-weight: bold;
   font-style: italic;
   color: #f1f1f1;
   background: #3367d6;
   padding: 40px;
+  text-align: center;
 }
 /* The note */
 .nap {

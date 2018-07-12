@@ -4,10 +4,14 @@ import { NavLink } from 'react-router-dom';
 const NavBar = () => {
   /* Add basic styling for NavLinks */
   const link = {
+
+    color: "white",
+    fontWeight: 'bold',
+    fontSize: '1.5em',
     width: '100px',
-    padding: '12px',
+    padding: '15px',
     margin: '0 6px 6px',
-    background: '#FFF9FF',
+    background: 'lime',
     textDecoration: 'none',
     border: '1px solid blue',
     borderRadius: '5px',
@@ -23,7 +27,7 @@ const NavBar = () => {
         style={link}
         /* add prop for activeStyle */
         activeStyle={{
-          background: 'pink'
+          background: 'blue'
         }}
       >Home</NavLink>
       <NavLink
@@ -32,9 +36,9 @@ const NavBar = () => {
         exact
         style={link}
         activeStyle={{
-          background: 'pink'
+          background: 'blue'
         }}
-      >naps</NavLink>
+      >Naps</NavLink>
       
       
     </div>

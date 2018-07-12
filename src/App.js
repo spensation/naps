@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNaps } from './actions/naps';
@@ -9,8 +9,11 @@ import Main from './components/Main';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-class App extends Component {
+class App extends React.Component {
 
+  componentDidMount() {
+    return this.props.fetchNaps()
+  }
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -54,7 +57,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h1 className="App-title">Naps</h1>
+          
           <NavBar />
           <Route exact path="/" component={Main} />
           <Route exact path="/naps" component={NapPage} />
