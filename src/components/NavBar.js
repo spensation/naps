@@ -39,7 +39,15 @@ const NavBar = () => {
           background: 'blue'
         }}
       >Naps</NavLink>
-      
+      <NavLink
+        className="navlink"
+        to="/new_nap"
+        exact
+        style={link}
+        activeStyle={{
+          background: 'blue'
+        }}
+      >New</NavLink>
       
     </div>
 

@@ -4,16 +4,16 @@ import { bindActionCreators } from 'redux';
 import { fetchNaps } from './actions/naps';
 import './App.css';
 import NapPage from './containers/NapPage';
+import NapFormPage from './containers/NapFormPage';
 import NavBar from './components/NavBar';
 import Main from './components/Main';
+
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
-  componentDidMount() {
-    return this.props.fetchNaps()
-  }
+  
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -60,6 +60,7 @@ class App extends React.Component {
           
           <NavBar />
           <Route exact path="/" component={Main} />
+          <Route exact path="/new_nap" component={NapFormPage} />
           <Route exact path="/naps" component={NapPage} />
         </div>
       </Router>

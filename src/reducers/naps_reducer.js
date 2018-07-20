@@ -25,10 +25,10 @@ export function napReducer(state = {
     //   return Object.assign({}, state, { loading: true });
     // case 'NAP_LOADED':
     //   return Object.assign({}, state, { loading: false, nap: action.payload })
-    // case 'ADD_NAP_PENDING':
-    //   return {...state, posting: true}
-    // case 'ADD_NAP_FULFILLED':
-    //   return Object.assign({}, state, {nap: state.recipes.concat(action.payload) });
+    case 'ADD_NAP_PENDING':
+      return {...state, posting: true}
+    case 'ADD_NAP_FULFILLED':
+      return Object.assign({}, state, {nap: state.naps.concat(action.payload) });
     
     // case 'DELETE_NAP_PENDING':
     //   return {...state, posting: true}

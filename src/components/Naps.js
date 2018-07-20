@@ -1,17 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+ import React from 'react';
 
 const Naps = (props) => {
-  console.log('InNaps', props)
-  
+  console.log('inNaps', props)
+
+  const onDelete = function () {
+    props.onDelete(props.name);
+  }
 
   const renderNaps = props.naps.map((nap, i) =>
       <div key={i} className="nap-card" >
-        <div className="nap">
-          <Link className="view-nap-link" to={`/naps/${nap.id}`}>
-            <h4>{nap.name}</h4>
-            <p>{nap.description}</p>
-          </Link>
+        <div className="nap">       
+          <h4>{nap.name}</h4>
+          <p>{nap.description}</p>
+          <button>Edit</button>
+          <button onClick={() => onDelete()}>Delete</button>
         </div>
         
       </div>

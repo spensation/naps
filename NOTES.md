@@ -18,3 +18,6 @@ const deleteNap = function (index) {
           onChange={napText => this.updateNapText(napText)}
           onKeyPress={this.handleKeyPress.bind(this)}
         />
+
+
+<Route exact path="/new_nap" component={NapForm} />
