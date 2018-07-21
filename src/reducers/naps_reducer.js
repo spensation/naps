@@ -1,5 +1,6 @@
 export function napReducer(state = {
   isFetching: false,
+  posting: false,
   naps: [],
   nap: {},
   
@@ -30,11 +31,10 @@ export function napReducer(state = {
     case 'ADD_NAP_FULFILLED':
       return Object.assign({}, state, {nap: state.naps.concat(action.payload) });
     
-    // case 'DELETE_NAP_PENDING':
-    //   return {...state, posting: true}
-    // case 'DELETE_NAP_FULFILLED':
-    //   const naps = state.naps.filter( nap => nap.id !== action.id);
-    //   return { naps };
+    case 'DELETE_NAP_FULFILLED':
+      return Object.assign({}, {naps: state.naps.filter(nap => nap.id !== action.id)});
+      // const naps = state.naps.filter( nap => nap.id !== parseInt(action.id));
+      // return { naps };
     default:
       return state;
 

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Naps from '../components/Naps';
+import Nap from '../components/Nap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNaps } from '../actions/naps';
 import { addNap } from '../actions/naps';
+import { deleteNap } from '../actions/naps';
 
 class NapPage extends Component {
 
@@ -15,15 +16,16 @@ class NapPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      napText: '',
       naps: [],
     }
 
-    this.onDelete = this.onDelete.bind(this);
   }
-
-  onDelete(nap_id) {
-    console.log('inOnDelete', this.props.naps.nap_id);
+  
+  deleteNap = (index, e) => {
+    const { history, naps } = this.props
+    console.log('inDeleteNap', history)
+    const napId = naps[index].id;
+    deleteNap(napId)  
   }
   // updateNapText(napText) {
   //   this.setState({ napText: napText.target.value })
@@ -62,11 +64,16 @@ class NapPage extends Component {
     return (
       <div className="container">
         <div className="header">Track thier naps</div>
-        <div>
-          <Naps 
-            naps={this.props.naps}
-            onDelete={this.onDelete}
-          />
+        <div className="nap">
+          {
+            this.props.naps.map((nap, index) => {
+              return(<Nap 
+                key={nap.id}
+                description={nap.description}
+                onDelete={this.deleteNap.bind(this, index)}
+                >{nap.name}</Nap>)
+            })
+          }
         </div>
 
 
@@ -84,7 +91,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchNaps: fetchNaps,
-    addNap: addNap
+    addNap: addNap,
+    deleteNap: deleteNap
   }, dispatch);
 }
 

@@ -13,7 +13,7 @@ const Naps = (props) => {
           <h4>{nap.name}</h4>
           <p>{nap.description}</p>
           <button>Edit</button>
-          <button onClick={() => onDelete()}>Delete</button>
+          <button onClick={props.onDelete}>Delete</button>
         </div>
         
       </div>
