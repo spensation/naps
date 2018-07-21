@@ -32,9 +32,8 @@ export function napReducer(state = {
       return Object.assign({}, state, {nap: state.naps.concat(action.payload) });
     
     case 'DELETE_NAP_FULFILLED':
-      return Object.assign({}, {naps: state.naps.filter(nap => nap.id !== action.id)});
-      // const naps = state.naps.filter( nap => nap.id !== parseInt(action.id));
-      // return { naps };
+      const naps = state.naps.filter( nap => nap.id !== parseInt(action.id));
+      return { naps };
     default:
       return state;
 

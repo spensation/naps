@@ -25,7 +25,7 @@ class NapPage extends Component {
     const { history, naps } = this.props
     console.log('inDeleteNap', history)
     const napId = naps[index].id;
-    deleteNap(napId)  
+    this.props.deleteNap(napId)  
   }
   // updateNapText(napText) {
   //   this.setState({ napText: napText.target.value })
