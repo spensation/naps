@@ -43,8 +43,8 @@ export function addNap(nap) {
       dispatch({type: 'DELETE_NAP_PENDING'});
       return fetch(`http://localhost:3001/api/v1/naps/${napId}`, {
           method: "DELETE",
-      }).then(response => response.json())
-        .then(naps => dispatch({ type: 'DELETE_NAP_FULFILLED', payload: naps }))
-
+      }).then(response => {
+        if (response.ok)dispatch({ type: 'DELETE_NAP_FULFILLED', deletedNapId: napId })
+      })
     };
   };

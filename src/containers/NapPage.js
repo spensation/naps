@@ -9,9 +9,7 @@ import { deleteNap } from '../actions/naps';
 
 class NapPage extends Component {
 
-  componentDidMount() {
-    return this.props.fetchNaps()
-  }
+
 
   constructor(props) {
     super(props);
@@ -19,6 +17,16 @@ class NapPage extends Component {
       naps: [],
     }
 
+  }
+
+  componentDidMount() {
+    return this.props.fetchNaps()
+  }
+
+  componentWillRecieveProps(nextprops) {
+    this.setState({
+      naps: nextprops.nap
+    })
   }
   
   deleteNap = (index, e) => {
